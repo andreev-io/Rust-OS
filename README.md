@@ -1,8 +1,17 @@
 # Bare Metal OS
-Following os.phil-opp.com.
+Following os.phil-opp.com. A simple kernel for x86_64.
 
-### Build and run
+### Dependencies on MacOS
 ```
-cd os/
-cargo build --target thumbv7em-none-eabihf
+cargo install cargo-xbuild
+rustup component add rust-src
+cargo install bootloader
+rustup component add llvm-tools-preview
+cargo bootimage
+brew install qemu
+```
+
+### Run
+```
+cd os/ && cargo xrun
 ```
