@@ -11,6 +11,8 @@ use os::println;
 pub extern "C" fn _start() -> ! {
     println!("hello world{}", "!");
 
+    os::init();
+
     #[cfg(test)]
     test_main();
 

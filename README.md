@@ -11,7 +11,23 @@ cargo bootimage
 brew install qemu
 ```
 
+### Build
+```
+cargo xbuild
+```
+
 ### Run
 ```
 cd os/ && cargo xrun
+```
+
+### Test
+For all tests:
+```
+cargo xtest
+```
+
+For library tests:
+```
+cargo xtest --lib
 ```
