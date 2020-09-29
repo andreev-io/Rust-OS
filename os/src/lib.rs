@@ -1,3 +1,5 @@
+#![feature(const_in_array_repeat_expressions)]
+#![feature(const_mut_refs)]
 #![feature(alloc_error_handler)]
 #![feature(abi_x86_interrupt)]
 #![no_std]
