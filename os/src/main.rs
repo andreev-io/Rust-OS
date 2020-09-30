@@ -8,6 +8,8 @@ use core::panic::PanicInfo;
 use os::println;
 use bootloader::{BootInfo, entry_point};
 use alloc::{boxed::Box, vec, vec::Vec, rc::Rc};
+use os::task::{Task, simple_executor::SimpleExecutor, executor::Executor};
+use os::task::keyboard;
 
 extern crate alloc;
 
@@ -49,10 +51,22 @@ fn kernel_main(boot_info: &'static BootInfo) -> ! {
     let page_ptr: *mut u64 = page.start_address().as_mut_ptr();
     unsafe { page_ptr.offset(400).write_volatile(0x_f021_f077_f065_f04e) };
 
+    let mut executor = Executor::new();
+    executor.spawn(Task::new(example_task()));
+    executor.spawn(Task::new(keyboard::print_keypresses()));
+    executor.run();
+
     #[cfg(test)]
     test_main();
+}
 
-    os::hlt_loop();
+async fn async_number() -> i32 {
+    11
+}
+
+async fn example_task() {
+    let number = async_number().await;
+    println!("async number: {}", number);
 }
 
 #[cfg(not(test))]

@@ -1,3 +1,4 @@
+#![feature(wake_trait)]
 #![feature(const_in_array_repeat_expressions)]
 #![feature(const_mut_refs)]
 #![feature(alloc_error_handler)]
@@ -18,6 +19,7 @@ pub mod interrupts;
 pub mod gdt;
 pub mod memory;
 pub mod allocator;
+pub mod task;
 
 #[alloc_error_handler]
 fn alloc_error_handler(layout: alloc::alloc::Layout) -> ! {

@@ -16,12 +16,26 @@ pic8259_simple = "0.2.0"
 pc-keyboard = "0.5.0"
 linked_list_allocator = "0.8.0"
 
+[dependencies.crossbeam-queue]
+version = "0.2.1"
+default-features = false
+features = ["alloc"]
+
 [unstable]
 build-std = ["core", "compiler_builtins", "alloc"]
 
 [dependencies.lazy_static]
 version = "1.0"
 features = ["spin_no_std"]
+
+[dependencies.conquer-once]
+version = "0.2.0"
+default-features = false
+
+[dependencies.futures-util]
+version = "0.3.4"
+default-features = false
+features = ["alloc"]
 
 [package.metadata.bootimage]
 test-args = [
